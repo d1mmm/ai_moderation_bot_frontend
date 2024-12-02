@@ -49,6 +49,8 @@ const LoginPage = () => {
           if (!response.ok) {
               throw new Error(data.detail || "Registration failed");
           }
+          
+          localStorage.setItem("Token", data.token)
 
           if(data.role === 'admin')
           {

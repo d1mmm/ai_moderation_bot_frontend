@@ -64,10 +64,13 @@ const AdminPage = () => {
             method: settings[category].method || null,
             threshold: settings[category].threshold || null
         }));
+
+        const token = localStorage.getItem("Token")
     
         fetch("http://127.0.0.1:8000/update-safety-settings", {
             method: "POST",
             headers: {
+                "Authorization": `${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(updatedSettings),

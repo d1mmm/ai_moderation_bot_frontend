@@ -9,7 +9,17 @@ const UserPage = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:8000/content-stats");
+                const token = localStorage.getItem("Token")
+                console.log(token)
+
+                const response =await fetch("http://127.0.0.1:8000/content-stats", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `${token}`,
+                        "Content-Type": "application/json"
+                    },
+                });
+
                 if (!response.ok) {
                     throw new Error("Failed to fetch content stats");
                 }
